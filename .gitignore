@@ -1,0 +1,7 @@
+.env
+.venv/
+.pip-cache/
+__pycache__/
+bookings.db
+deploy/
+installers/
