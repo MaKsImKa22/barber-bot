@@ -11,6 +11,8 @@ from html import escape
 from pathlib import Path
 
 DOCS = Path(__file__).resolve().parent.parent / "docs"
+# Стилі невеликі, тому вбудовуються в кожну сторінку: без окремого запиту, що блокує відображення.
+CSS = (Path(__file__).resolve().parent / "site.css").read_text(encoding="utf-8")
 SITE = "https://maksimka22.github.io/barber-bot/"
 BOT = "https://t.me/barrrber_bot"
 
@@ -217,7 +219,8 @@ def page(*, path, title, description, root, schema, body):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="{FONTS}" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="{FONTS}"></noscript>
-  <link rel="stylesheet" href="{root}style.css">
+  <style>
+{CSS}  </style>
   {jsonld({"@context": "https://schema.org", "@graph": schema})}
 </head>
 <body>
