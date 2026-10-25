@@ -177,6 +177,9 @@ ICONS = """  <svg width="0" height="0" style="position:absolute" aria-hidden="tr
     <symbol id="i-razor" viewBox="0 0 32 32"><path d="M6 26 26 6M12 6h14v14" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   </svg>"""
 
+# Шрифти вантажаться без блокування першого відображення: спершу текст системним шрифтом, потім підміна.
+FONTS = "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+
 FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23141210'/%3E%3Cpath d='M9 23 23 9M13 9h10v10' stroke='%23c9a46a' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"
 
 
@@ -212,7 +215,8 @@ def page(*, path, title, description, root, schema, body):
   <link rel="icon" href="{FAVICON}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="{FONTS}" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="{FONTS}"></noscript>
   <link rel="stylesheet" href="{root}style.css">
   {jsonld({"@context": "https://schema.org", "@graph": schema})}
 </head>
