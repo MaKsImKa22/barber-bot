@@ -5,3 +5,7 @@ __pycache__/
 bookings.db
 deploy/
 installers/
+portfolio/
+downloads/
+wp-local/
+lutsk-cleaning-wp/
