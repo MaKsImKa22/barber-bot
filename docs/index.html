@@ -3,206 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Барбершоп «Бритва» — запис онлайн</title>
-  <meta name="description" content="Чоловічі стрижки та догляд за бородою. Запис за 30 секунд через Telegram-бота.">
-  <meta property="og:title" content="Барбершоп «Бритва»">
-  <meta property="og:description" content="Чоловічі стрижки та борода. Запис за 30 секунд у Telegram.">
+  <title>Барбершоп у Луцьку «Бритва» — стрижка від 400 грн, запис онлайн</title>
+  <meta name="description" content="Барбершоп «Бритва» у Луцьку: чоловіча стрижка 400 грн, борода 250 грн, комплекс 600 грн. Запис за 30 секунд у Telegram. Пн–Сб 10:00–19:00.">
+  <link rel="canonical" href="https://maksimka22.github.io/barber-bot/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="uk_UA">
+  <meta property="og:site_name" content="Барбершоп «Бритва»">
+  <meta property="og:title" content="Барбершоп у Луцьку «Бритва» — стрижка від 400 грн, запис онлайн">
+  <meta property="og:description" content="Барбершоп «Бритва» у Луцьку: чоловіча стрижка 400 грн, борода 250 грн, комплекс 600 грн. Запис за 30 секунд у Telegram. Пн–Сб 10:00–19:00.">
+  <meta property="og:url" content="https://maksimka22.github.io/barber-bot/">
+  <meta property="og:image" content="https://maksimka22.github.io/barber-bot/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23141210'/%3E%3Cpath d='M9 23 23 9M13 9h10v10' stroke='%23c9a46a' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #141210;
-      --bg-2: #1c1916;
-      --card: #221e1a;
-      --line: #3a332b;
-      --text: #f2ebe0;
-      --muted: #b3a896;
-      --accent: #c9a46a;
-      --accent-ink: #1a1510;
-      --tg: #2aabee;
-      --radius: 14px;
-      --wrap: 1120px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font: 400 17px/1.6 "Manrope", system-ui, sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; }
-    h1, h2, h3 { font-family: "Playfair Display", Georgia, serif; line-height: 1.15; margin: 0; }
-    h2 { font-size: clamp(30px, 4vw, 44px); }
-    p { margin: 0; }
-    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-
-    .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 20px; }
-    .eyebrow {
-      font-size: 13px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
-      color: var(--accent);
-    }
-    .section { padding: 96px 0; scroll-margin-top: 68px; }
-    .section-head { display: grid; gap: 14px; max-width: 640px; margin-bottom: 48px; }
-    .section-head p { color: var(--muted); }
-
-    /* Кнопки */
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-      padding: 15px 26px; border-radius: 999px; border: 1px solid transparent;
-      font-weight: 700; font-size: 16px; text-decoration: none; white-space: nowrap;
-      transition: transform .15s ease, background-color .15s ease, border-color .15s ease;
-    }
-    .btn:hover { transform: translateY(-1px); }
-    .btn-primary { background: var(--accent); color: var(--accent-ink); }
-    .btn-primary:hover { background: #d8b67f; }
-    .btn-ghost { border-color: var(--line); color: var(--text); }
-    .btn-ghost:hover { border-color: var(--accent); }
-    .btn svg { width: 20px; height: 20px; flex: none; }
-
-    /* Шапка */
-    .header {
-      position: sticky; top: 0; z-index: 10;
-      background: rgba(20, 18, 16, .88); backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--line);
-    }
-    .header .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 20px; }
-    .logo { display: flex; align-items: center; gap: 10px; font: 700 22px "Playfair Display", serif; text-decoration: none; letter-spacing: .04em; }
-    .logo svg { width: 28px; height: 28px; }
-    .nav { display: flex; gap: 28px; }
-    .nav a { color: var(--muted); text-decoration: none; font-weight: 500; }
-    .nav a:hover { color: var(--text); }
-    .header .btn { padding: 10px 18px; font-size: 15px; }
-
-    /* Перший екран */
-    .hero { padding: 88px 0 96px; position: relative; overflow: hidden; }
-    .hero .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
-    .hero h1 { font-size: clamp(40px, 6vw, 68px); margin: 18px 0 22px; }
-    .hero h1 em { font-style: normal; color: var(--accent); }
-    .hero-lead { color: var(--muted); font-size: 19px; max-width: 520px; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
-    .hero-note { margin-top: 18px; font-size: 14px; color: var(--muted); }
-
-    .pole {
-      position: relative; aspect-ratio: 4 / 5; border-radius: 28px; overflow: hidden;
-      border: 1px solid var(--line);
-      background:
-        repeating-linear-gradient(135deg, #2a241d 0 26px, #1f1b17 26px 52px);
-    }
-    .pole::after {
-      content: ""; position: absolute; inset: 0;
-      background: radial-gradient(120% 80% at 30% 20%, rgba(201,164,106,.22), transparent 60%);
-    }
-    .pole-card {
-      position: absolute; left: 22px; right: 22px; bottom: 22px; z-index: 1;
-      background: rgba(20, 18, 16, .92); border: 1px solid var(--line); border-radius: var(--radius);
-      padding: 20px 22px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; text-align: center;
-    }
-    .pole-card b { display: block; font: 700 22px "Playfair Display", serif; color: var(--accent); }
-    .pole-card span { font-size: 13px; color: var(--muted); }
-    .pole-mark {
-      position: absolute; top: 28px; left: 28px; z-index: 1; width: 64px; height: 64px;
-      color: var(--accent);
-    }
-
-    /* Кроки */
-    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; counter-reset: step; }
-    .step {
-      background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius);
-      padding: 28px; counter-increment: step;
-    }
-    .step::before {
-      content: counter(step, decimal-leading-zero);
-      display: block; font: 700 15px "Manrope", sans-serif; color: var(--accent); letter-spacing: .1em; margin-bottom: 18px;
-    }
-    .step h3 { font-size: 22px; margin-bottom: 8px; }
-    .step p { color: var(--muted); }
-
-    /* Послуги */
-    .services { background: var(--bg-2); border-block: 1px solid var(--line); }
-    .price-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .price {
-      display: flex; flex-direction: column; gap: 14px;
-      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px;
-    }
-    .price.featured { border-color: var(--accent); }
-    .price-tag {
-      align-self: flex-start; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-      background: var(--accent); color: var(--accent-ink); padding: 4px 10px; border-radius: 999px;
-    }
-    .price h3 { font-size: 24px; }
-    .price p { color: var(--muted); flex: 1; }
-    .price-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; border-top: 1px solid var(--line); padding-top: 18px; }
-    .price-row b { font: 700 30px "Playfair Display", serif; }
-    .price-row span { color: var(--muted); font-size: 14px; }
-    .price .btn { width: 100%; }
-
-    /* Чому ми */
-    .features { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
-    .feature svg { width: 32px; height: 32px; color: var(--accent); margin-bottom: 16px; }
-    .feature h3 { font-size: 20px; margin-bottom: 8px; }
-    .feature p { color: var(--muted); font-size: 16px; }
-
-    /* Контакти */
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .panel { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px; }
-    .panel h3 { font-size: 24px; margin-bottom: 20px; }
-    .hours { list-style: none; margin: 0; padding: 0; }
-    .hours li { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px dashed var(--line); }
-    .hours li:last-child { border-bottom: 0; }
-    .hours .off { color: var(--muted); }
-    .contacts { display: grid; gap: 18px; }
-    .contacts div span { display: block; font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
-
-    /* Фінальний заклик */
-    .cta { text-align: center; padding: 96px 0; }
-    .cta h2 { margin: 14px auto 18px; max-width: 700px; }
-    .cta p { color: var(--muted); margin: 0 auto 32px; max-width: 520px; }
-
-    .footer { border-top: 1px solid var(--line); padding: 28px 0 32px; color: var(--muted); font-size: 14px; }
-    .footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
-
-    /* Кнопка запису внизу на телефоні */
-    .mobile-cta { display: none; }
-
-    @media (max-width: 900px) {
-      .hero .wrap { grid-template-columns: 1fr; gap: 40px; }
-      .pole { aspect-ratio: 16 / 10; }
-      .steps, .price-list { grid-template-columns: 1fr; }
-      .features { grid-template-columns: 1fr 1fr; }
-      .contact-grid { grid-template-columns: 1fr; }
-      .nav { display: none; }
-    }
-
-    @media (max-width: 600px) {
-      body { font-size: 16px; padding-bottom: 84px; }
-      .wrap { padding: 0 16px; }
-      .section, .cta { padding: 64px 0; }
-      .hero { padding: 48px 0 64px; }
-      .hero-actions .btn { width: 100%; }
-      .pole { aspect-ratio: 4 / 3; }
-      .pole-card { left: 14px; right: 14px; bottom: 14px; padding: 16px 12px; }
-      .pole-card b { font-size: 18px; }
-      .features { grid-template-columns: 1fr; gap: 28px; }
-      .panel { padding: 24px; }
-      .header .btn { display: none; }
-      .mobile-cta {
-        display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
-        padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
-        background: rgba(20, 18, 16, .95); border-top: 1px solid var(--line);
-      }
-      .mobile-cta .btn { width: 100%; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .btn { transition: none; }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "HairSalon", "@id": "https://maksimka22.github.io/barber-bot/#barbershop", "name": "Барбершоп «Бритва»", "description": "Барбершоп у Луцьку: чоловічі стрижки, стрижка бороди, запис онлайн у Telegram.", "url": "https://maksimka22.github.io/barber-bot/", "image": "https://maksimka22.github.io/barber-bot/og.jpg", "telephone": "+380000000000", "priceRange": "250–600 грн", "currenciesAccepted": "UAH", "paymentAccepted": "Готівка, картка", "address": {"@type": "PostalAddress", "streetAddress": "вул. Прикладна, 1", "addressLocality": "Луцьк", "addressRegion": "Волинська область", "postalCode": "43000", "addressCountry": "UA"}, "areaServed": {"@type": "City", "name": "Луцьк"}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "10:00", "closes": "19:00"}], "sameAs": ["https://t.me/barrrber_bot"], "potentialAction": {"@type": "ReserveAction", "name": "Записатися в Telegram", "target": "https://t.me/barrrber_bot"}, "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Послуги барбершопу", "itemListElement": [{"@type": "Offer", "price": "400", "priceCurrency": "UAH", "itemOffered": {"@type": "Service", "name": "Чоловіча стрижка", "url": "https://maksimka22.github.io/barber-bot/posluhy/cholovicha-stryzhka/"}}, {"@type": "Offer", "price": "250", "priceCurrency": "UAH", "itemOffered": {"@type": "Service", "name": "Стрижка бороди", "url": "https://maksimka22.github.io/barber-bot/posluhy/stryzhka-borody/"}}, {"@type": "Offer", "price": "600", "priceCurrency": "UAH", "itemOffered": {"@type": "Service", "name": "Стрижка + борода", "url": "https://maksimka22.github.io/barber-bot/posluhy/stryzhka-i-boroda/"}}]}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Скільки коштує чоловіча стрижка в Луцьку?", "acceptedAnswer": {"@type": "Answer", "text": "У «Бритві» чоловіча стрижка коштує 400 грн, стрижка бороди — 250 грн, комплекс «стрижка + борода» — 600 грн. Миття голови й укладка вже входять у ціну."}}, {"@type": "Question", "name": "Як записатися до барбера?", "acceptedAnswer": {"@type": "Answer", "text": "Через Telegram-бот @barrrber_bot: оберіть послугу, день і вільний час — запис займає близько 30 секунд, підтвердження приходить одразу в чат."}}, {"@type": "Question", "name": "Де знаходиться барбершоп?", "acceptedAnswer": {"@type": "Answer", "text": "Луцьк, вул. Прикладна, 1. Графік: Пн–Сб 10:00–19:00, неділя — вихідний."}}, {"@type": "Question", "name": "Чи можна оплатити карткою?", "acceptedAnswer": {"@type": "Answer", "text": "Так, приймаємо готівку й картки."}}]}]}</script>
 </head>
 <body>
 
@@ -213,13 +32,13 @@
 
   <header class="header">
     <div class="wrap">
-      <a class="logo" href="#top" aria-label="Бритва, на початок сторінки">
+      <a class="logo" href="" aria-label="Барбершоп «Бритва», головна">
         <svg aria-hidden="true"><use href="#i-razor" style="color: var(--accent)"/></svg>
         БРИТВА
       </a>
       <nav class="nav" aria-label="Розділи">
         <a href="#services">Послуги</a>
-        <a href="#why">Чому ми</a>
+        <a href="#faq">Питання</a>
         <a href="#contacts">Контакти</a>
       </nav>
       <a class="btn btn-primary" href="https://t.me/barrrber_bot" target="_blank" rel="noopener">Записатися</a>
@@ -230,14 +49,14 @@
     <section class="hero">
       <div class="wrap">
         <div>
-          <span class="eyebrow">Барбершоп · Чоловічі стрижки</span>
-          <h1>Стрижка, після якої <em>хочеться повернутися</em></h1>
-          <p class="hero-lead">Класичні та сучасні чоловічі стрижки й оформлення бороди. Без черг і дзвінків: обирай зручний час прямо в Telegram.</p>
+          <span class="eyebrow">Барбершоп · Луцьк</span>
+          <h1>Барбершоп у Луцьку: стрижка, після якої <em>хочеться повернутися</em></h1>
+          <p class="hero-lead">Класичні та сучасні чоловічі стрижки й оформлення бороди в центрі Луцька. Без черг і дзвінків: обирай зручний час прямо в Telegram.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="https://t.me/barrrber_bot" target="_blank" rel="noopener">
-              <svg aria-hidden="true"><use href="#i-tg"/></svg>
-              Записатися в Telegram
-            </a>
+            <svg aria-hidden="true"><use href="#i-tg"/></svg>
+            Записатися в Telegram
+          </a>
             <a class="btn btn-ghost" href="#services">Подивитися ціни</a>
           </div>
           <p class="hero-note">Запис за 30 секунд · Підтвердження одразу в чаті</p>
@@ -282,28 +101,42 @@
       <div class="wrap">
         <div class="section-head">
           <span class="eyebrow">Послуги та ціни</span>
-          <h2>Без прихованих доплат</h2>
-          <p>Миття голови, укладка та гарячий рушник входять у вартість.</p>
+          <h2>Ціни на стрижку в барбершопі</h2>
+          <p>Миття голови, укладка та гарячий рушник входять у вартість. Без прихованих доплат.</p>
         </div>
         <div class="price-list">
           <article class="price">
-            <h3>Чоловіча стрижка</h3>
+            
+            <h3><a href="posluhy/cholovicha-stryzhka/">Чоловіча стрижка</a></h3>
             <p>Консультація, стрижка машинкою та ножицями, миття й укладка.</p>
             <div class="price-row"><b>400 грн</b><span>~ 60 хв</span></div>
-            <a class="btn btn-ghost" href="https://t.me/barrrber_bot" target="_blank" rel="noopener">Записатися</a>
+            <a class="price-more" href="posluhy/cholovicha-stryzhka/">Що входить і ціна →</a>
+            <a class="btn btn-ghost" href="https://t.me/barrrber_bot" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#i-tg"/></svg>
+            Записатися
+          </a>
+          </article>
+          <article class="price">
+            
+            <h3><a href="posluhy/stryzhka-borody/">Стрижка бороди</a></h3>
+            <p>Форма, контур небезпечною бритвою, догляд олією.</p>
+            <div class="price-row"><b>250 грн</b><span>~ 40 хв</span></div>
+            <a class="price-more" href="posluhy/stryzhka-borody/">Що входить і ціна →</a>
+            <a class="btn btn-ghost" href="https://t.me/barrrber_bot" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#i-tg"/></svg>
+            Записатися
+          </a>
           </article>
           <article class="price featured">
             <span class="price-tag">Найпопулярніше</span>
-            <h3>Стрижка + борода</h3>
+            <h3><a href="posluhy/stryzhka-i-boroda/">Стрижка + борода</a></h3>
             <p>Повний образ: стрижка, моделювання бороди, гарячий рушник.</p>
             <div class="price-row"><b>600 грн</b><span>~ 90 хв</span></div>
-            <a class="btn btn-primary" href="https://t.me/barrrber_bot" target="_blank" rel="noopener">Записатися</a>
-          </article>
-          <article class="price">
-            <h3>Стрижка бороди</h3>
-            <p>Форма, контур небезпечною бритвою, догляд олією.</p>
-            <div class="price-row"><b>250 грн</b><span>~ 40 хв</span></div>
-            <a class="btn btn-ghost" href="https://t.me/barrrber_bot" target="_blank" rel="noopener">Записатися</a>
+            <a class="price-more" href="posluhy/stryzhka-i-boroda/">Що входить і ціна →</a>
+            <a class="btn btn-primary" href="https://t.me/barrrber_bot" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#i-tg"/></svg>
+            Записатися
+          </a>
           </article>
         </div>
       </div>
@@ -340,11 +173,26 @@
       </div>
     </section>
 
-    <section class="section services" id="contacts">
+    <section class="section services" id="faq">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Питання</span>
+          <h2>Часті питання</h2>
+        </div>
+        <div class="faq">
+          <details><summary>Скільки коштує чоловіча стрижка в Луцьку?</summary><p>У «Бритві» чоловіча стрижка коштує 400 грн, стрижка бороди — 250 грн, комплекс «стрижка + борода» — 600 грн. Миття голови й укладка вже входять у ціну.</p></details>
+          <details><summary>Як записатися до барбера?</summary><p>Через Telegram-бот @barrrber_bot: оберіть послугу, день і вільний час — запис займає близько 30 секунд, підтвердження приходить одразу в чат.</p></details>
+          <details><summary>Де знаходиться барбершоп?</summary><p>Луцьк, вул. Прикладна, 1. Графік: Пн–Сб 10:00–19:00, неділя — вихідний.</p></details>
+          <details><summary>Чи можна оплатити карткою?</summary><p>Так, приймаємо готівку й картки.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contacts">
       <div class="wrap">
         <div class="section-head">
           <span class="eyebrow">Контакти</span>
-          <h2>Чекаємо на тебе</h2>
+          <h2>Барбершоп «Бритва» у Луцьку</h2>
         </div>
         <div class="contact-grid">
           <div class="panel">
@@ -358,7 +206,8 @@
           <div class="panel">
             <h3>Як нас знайти</h3>
             <div class="contacts">
-              <div><span>Адреса</span>вул. Прикладна, 1</div>
+              <div><span>Адреса</span>Луцьк, вул. Прикладна, 1</div>
+              <div><span>Телефон</span><a href="tel:+380000000000">+380 00 000 00 00</a></div>
               <div><span>Telegram</span><a href="https://t.me/barrrber_bot" target="_blank" rel="noopener">@barrrber_bot</a></div>
               <div><span>Оплата</span>Готівка або картка</div>
             </div>
@@ -373,25 +222,25 @@
         <h2>Вільні місця на цей тиждень ще є</h2>
         <p>Обери зручний час у Telegram — це займе менше хвилини.</p>
         <a class="btn btn-primary" href="https://t.me/barrrber_bot" target="_blank" rel="noopener">
-          <svg aria-hidden="true"><use href="#i-tg"/></svg>
-          Записатися в Telegram
-        </a>
+            <svg aria-hidden="true"><use href="#i-tg"/></svg>
+            Записатися в Telegram
+          </a>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="wrap">
-      <span>© Барбершоп «Бритва»</span>
+      <span>© Барбершоп «Бритва» · Луцьк, вул. Прикладна, 1 · +380 00 000 00 00</span>
       <span>Демо-проєкт для портфоліо · сайт + Telegram-бот</span>
     </div>
   </footer>
 
   <div class="mobile-cta">
     <a class="btn btn-primary" href="https://t.me/barrrber_bot" target="_blank" rel="noopener">
-      <svg aria-hidden="true"><use href="#i-tg"/></svg>
-      Записатися в Telegram
-    </a>
+            <svg aria-hidden="true"><use href="#i-tg"/></svg>
+            Записатися в Telegram
+          </a>
   </div>
 
 </body>
