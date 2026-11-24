@@ -24,7 +24,7 @@ class FakeSession(BaseSession):
         sent.append(method)
         if isinstance(method, (SendMessage, EditMessageText)):
             msg_id[0] += 1
-            return Message.model_validate({"message_id": msg_id[0], "date": 0,
+            return Message.model_validate({"message_id": msg_id[0], "date": 1700000000,
                 "chat": {"id": getattr(method, "chat_id", 1) or 1, "type": "private"},
                 "text": method.text})
         return True
@@ -38,7 +38,7 @@ uid = [0]
 
 def msg(text=None, contact=None):
     uid[0] += 1
-    m = {"message_id": uid[0], "date": 0, "chat": CHAT, "from": USER}
+    m = {"message_id": uid[0], "date": 1700000000, "chat": CHAT, "from": USER}
     if text: m["text"] = text
     if contact: m["contact"] = contact
     return Update.model_validate({"update_id": uid[0], "message": m})
@@ -47,7 +47,7 @@ def cb(data):
     uid[0] += 1
     return Update.model_validate({"update_id": uid[0], "callback_query": {
         "id": str(uid[0]), "from": USER, "chat_instance": "x", "data": data,
-        "message": {"message_id": 5, "date": 0, "chat": CHAT, "from": {"id": 42, "is_bot": True, "first_name": "B"}, "text": "x"}}})
+        "message": {"message_id": 5, "date": 1700000000, "chat": CHAT, "from": {"id": 42, "is_bot": True, "first_name": "B"}, "text": "x"}}})
 
 def last_kb_data():
     for m in reversed(sent):
